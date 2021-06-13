@@ -1,17 +1,30 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class DropEnemy : MonoBehaviour
+public class DisposeEnemy : MonoBehaviour
 {
 
 	[SerializeField] Selector _deadEnemyDropOffSelector;
 
 	RayProvider _cameraRayProvider;
 	EnemyStorage _enemyStorage;
+	Action OnEnemyDropOff;
+
 
 	void Awake()
 	{
 		_cameraRayProvider = GetComponent<RayProvider>();
 		_enemyStorage = GetComponent<EnemyStorage>();
+	}
+
+	public void AddEnemyDropOffListener(Action func)
+	{
+		OnEnemyDropOff += func;
+	}
+
+	public void RemoveEnemyDropOffListener(Action func)
+	{
+		OnEnemyDropOff -= func;
 	}
 
 	void Update()
@@ -23,7 +36,9 @@ public class DropEnemy : MonoBehaviour
 			Transform storedEnemy = _enemyStorage.GetEnemy();
 			if (_deadEnemyDropOffSelector.GetSelection() != null && storedEnemy != null)
 			{
-				Debug.Log("can drop off enemy");
+				_enemyStorage.DropEnemy();
+				OnEnemyDropOff?.Invoke();
+				Destroy(storedEnemy.gameObject);
 			}
 		}
 	}

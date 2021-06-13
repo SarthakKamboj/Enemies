@@ -30,4 +30,9 @@ public class EnemyStorage : MonoBehaviour
 	{
 		return _enemyTransform;
 	}
+
+	public void DropEnemy()
+	{
+		_enemyTransform = null;
+	}
 }
