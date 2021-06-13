@@ -4,8 +4,8 @@ using UnityEngine;
 public abstract class EnemyDie : MonoBehaviour
 {
 
-	[SerializeField] Action OnEnemyDieAction;
-	bool isDead = false;
+	protected Action OnEnemyDieAction;
+	protected bool isDead = false;
 
 	public void AddEnemyDieListener(Action func)
 	{
