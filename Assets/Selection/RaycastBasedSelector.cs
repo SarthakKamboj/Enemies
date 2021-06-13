@@ -4,12 +4,13 @@ public class RaycastBasedSelector : Selector
 {
 
 	[SerializeField] LayerMask _layerMask;
+	[SerializeField] float _maxDistance = 20f;
 
 	RaycastHit _hitInfo;
 
 	public override void CheckRay(Ray ray)
 	{
-		if (Physics.Raycast(ray, out var hit, Mathf.Infinity, _layerMask))
+		if (Physics.Raycast(ray, out var hit, _maxDistance, _layerMask))
 		{
 			_hitInfo = hit;
 		}
