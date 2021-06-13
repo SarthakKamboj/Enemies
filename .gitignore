@@ -1,0 +1,13 @@
+Assembly-CSharp.csproj
+Enemy.sln
+Library
+Logs
+obj
+Packages
+ProjectSettings
+Temp
+**/*.meta
+.gitignore.swp
+Builds
+Assets/lines.py
+.vscode
