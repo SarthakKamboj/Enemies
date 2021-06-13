@@ -1,17 +1,18 @@
+using System;
 using UnityEngine;
 
 public abstract class Selector : MonoBehaviour
 {
 	public virtual void CheckRay(Ray ray)
 	{
-		return;
+		throw new NotImplementedException();
 	}
 	public virtual Transform GetSelection()
 	{
-		return null;
+		throw new NotImplementedException();
 	}
 	public virtual Vector3 GetSelectionPoint()
 	{
-		return Vector3.zero;
+		throw new NotImplementedException();
 	}
 }
