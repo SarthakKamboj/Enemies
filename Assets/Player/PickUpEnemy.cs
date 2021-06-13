@@ -3,17 +3,16 @@
 public class PickUpEnemy : MonoBehaviour
 {
 
-	[SerializeField] Selector _deadEnemySelector;
+	[SerializeField] Selector _deadEnemyPickUpSelector;
 
 	RayProvider _screenRayProvider;
-	Transform _enemyTransform;
-	Vector3 _playerExtents;
+	EnemyStorage _enemyStorage;
 
 	void Awake()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
 		_screenRayProvider = GetComponent<RayProvider>();
-		_playerExtents = GetComponent<Collider>().bounds.extents;
+		_enemyStorage = GetComponent<EnemyStorage>();
 	}
 
 	void Update()
@@ -21,9 +20,9 @@ public class PickUpEnemy : MonoBehaviour
 		if (Input.GetMouseButtonDown(0))
 		{
 			Ray ray = _screenRayProvider.GetRay();
-			_deadEnemySelector.CheckRay(ray);
+			_deadEnemyPickUpSelector.CheckRay(ray);
 
-			Transform deadEnemy = _deadEnemySelector.GetSelection();
+			Transform deadEnemy = _deadEnemyPickUpSelector.GetSelection();
 			if (deadEnemy != null && deadEnemy.GetComponent<EnemyDie>().IsDead())
 			{
 				PickUp(deadEnemy);
@@ -33,19 +32,13 @@ public class PickUpEnemy : MonoBehaviour
 		}
 	}
 
-	void LateUpdate()
+	void PickUp(Transform t)
 	{
-		if (_enemyTransform != null)
+		if (_enemyStorage.GetEnemy() == null)
 		{
-			_enemyTransform.position = transform.position + new Vector3(0f, _playerExtents.y + 2f, 0f);
+			_enemyStorage.SetEnemy(t);
 		}
 	}
 
-	void PickUp(Transform t)
-	{
-		if (_enemyTransform == null)
-		{
-			_enemyTransform = t;
-		}
-	}
+
 }
