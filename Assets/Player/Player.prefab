@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 1286239636}
   - component: {fileID: 1286239635}
   - component: {fileID: 1286239634}
+  - component: {fileID: 1286239639}
+  - component: {fileID: 1286239640}
+  - component: {fileID: 8518378425457946086}
   m_Layer: 9
   m_Name: EnemyStorage
   m_TagString: Untagged
@@ -48,7 +51,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deadEnemyPickUpSelector: {fileID: 1286239636}
-  _collider: {fileID: 8558924136983185777}
 --- !u!114 &1286239637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +79,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 256
+  _maxDistance: 20
 --- !u!114 &1286239635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +95,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 2048
+  _maxDistance: 20
 --- !u!114 &1286239634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +109,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+--- !u!114 &1286239639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286239632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7f46ab1890ea5b4caa972ace8033de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 8558924136983185777}
+--- !u!114 &1286239640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286239632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b85b8f602109cc4baed5a287a4e8911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _laserPrefab: {fileID: 6270639148284885999, guid: a0248f667d765eb4ca33119ac75a440d,
+    type: 3}
+  _ground: {fileID: 0}
+--- !u!114 &8518378425457946086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286239632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f15f39aa85656a4e9297ebb48960f7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  _radius: 0.2
 --- !u!1 &8558924136983185779
 GameObject:
   m_ObjectHideFlags: 0
