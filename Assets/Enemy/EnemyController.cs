@@ -5,10 +5,11 @@ public class EnemyController : MonoBehaviour
 {
 
 	[SerializeField] NavMeshAgent _agent;
-	[SerializeField] Transform _player;
+	[SerializeField] TransformScrObj _playerObj;
 
 	Transform _t;
 	EnemyDie _baseEnemyDie;
+	Transform _player;
 
 
 	void Awake()
@@ -16,11 +17,27 @@ public class EnemyController : MonoBehaviour
 		_t = transform;
 		_baseEnemyDie = GetComponent<EnemyDie>();
 		_baseEnemyDie.AddEnemyDieListener(OnEnemyDie);
+
+		_playerObj.AddTransformChangeListener(UpdatePlayerRef);
+	}
+
+	void Start()
+	{
+		if (_player == null)
+		{
+			UpdatePlayerRef(_playerObj.GetTransform());
+		}
 	}
 
 	void OnDestroy()
 	{
 		_baseEnemyDie.RemoveEnemyDieListener(OnEnemyDie);
+		_playerObj.RemoveTransformChangeListener(UpdatePlayerRef);
+	}
+
+	void UpdatePlayerRef(Transform t)
+	{
+		_player = t;
 	}
 
 	void Update()
