@@ -10,7 +10,6 @@ public class PickUpEnemy : MonoBehaviour
 
 	void Awake()
 	{
-		Cursor.lockState = CursorLockMode.Locked;
 		_screenRayProvider = GetComponent<RayProvider>();
 		_enemyStorage = GetComponent<EnemyStorage>();
 	}

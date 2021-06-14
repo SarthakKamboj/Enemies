@@ -5,6 +5,7 @@ public class GenerateNewLaser : MonoBehaviour
 
 	[SerializeField] GameObject _laserPrefab;
 	[SerializeField] Transform _ground;
+	[SerializeField] RandomPosition _randomPositionGenerator;
 
 	DisposeEnemy _disposeEnemy;
 	Vector3 _groundExtents;
@@ -18,6 +19,14 @@ public class GenerateNewLaser : MonoBehaviour
 		_groundExtents = _ground.GetComponent<Collider>().bounds.extents;
 		_laserDetector = GetComponent<Detector>();
 		_laserExtents = GetLaserExents();
+	}
+
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			CreateNewLaser();
+		}
 	}
 
 	Vector3 GetLaserExents()
@@ -35,24 +44,8 @@ public class GenerateNewLaser : MonoBehaviour
 
 	void CreateNewLaser()
 	{
-		Instantiate(_laserPrefab, GenerateRandomPoint(), Quaternion.Euler(Vector3.zero));
+		Vector3 newPos = _randomPositionGenerator.GetRandomPosition() + new Vector3(0f, _laserExtents.y, 0f);
+		Instantiate(_laserPrefab, newPos, Quaternion.Euler(Vector3.zero));
 	}
-
-	Vector3 GenerateRandomPoint()
-	{
-		float x, y, z;
-		Vector3 newPos;
-
-		y = _ground.position.y + _groundExtents.y + _laserExtents.y;
-		do
-		{
-			x = Random.Range(_ground.position.x - _groundExtents.x, _ground.position.x + _groundExtents.x);
-			z = Random.Range(_ground.position.z - _groundExtents.z, _ground.position.z + _groundExtents.z);
-			newPos = new Vector3(x, y, z);
-		} while (_laserDetector.Detect(newPos));
-
-		return newPos;
-	}
-
 
 }
