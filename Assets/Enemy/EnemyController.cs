@@ -23,10 +23,10 @@ public class EnemyController : MonoBehaviour
 
 	void Start()
 	{
-		if (_player == null)
-		{
-			UpdatePlayerRef(_playerObj.GetTransform());
-		}
+		// if (_player == null)
+		// {
+		UpdatePlayerRef(_playerObj.GetTransform());
+		// }
 	}
 
 	void OnDestroy()

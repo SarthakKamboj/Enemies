@@ -694,7 +694,7 @@ RectTransform:
   m_GameObject: {fileID: 614972632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.119652234, y: 0.119652234, z: 0.119652234}
+  m_LocalScale: {x: 0.057361685, y: 0.057361685, z: 0.057361685}
   m_Children: []
   m_Father: {fileID: 37408101}
   m_RootOrder: 0
@@ -723,7 +723,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1828,6 +1828,12 @@ MonoBehaviour:
     type: 3}
   _randomPositionGenerator: {fileID: 1036920896}
   TimeBetweenSpawns: 5
+--- !u!95 &1328254562 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4728763776018843513, guid: 2f3edef3dfcd1224e9155b4accd9a85a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8558924136904970250}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1507060863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2669,6 +2675,16 @@ PrefabInstance:
       propertyPath: _randomPositionGenerator
       value: 
       objectReference: {fileID: 1036920896}
+    - target: {fileID: 1693315308454632707, guid: 2f3edef3dfcd1224e9155b4accd9a85a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728763776018843513, guid: 2f3edef3dfcd1224e9155b4accd9a85a,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8558924136983185776, guid: 2f3edef3dfcd1224e9155b4accd9a85a,
         type: 3}
       propertyPath: m_RootOrder
@@ -2731,8 +2747,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8558924136983185782, guid: 2f3edef3dfcd1224e9155b4accd9a85a,
         type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 1328254562}
+    - target: {fileID: 8558924136983185782, guid: 2f3edef3dfcd1224e9155b4accd9a85a,
+        type: 3}
       propertyPath: _mainCamera
       value: 
       objectReference: {fileID: 963194228}
+    - target: {fileID: 8558924137106986636, guid: 2f3edef3dfcd1224e9155b4accd9a85a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f3edef3dfcd1224e9155b4accd9a85a, type: 3}
