@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -5517717633062398563}
   - component: {fileID: -2787316950246152633}
   - component: {fileID: -1883535380344256774}
+  - component: {fileID: -8104047953551067893}
   m_Layer: 14
   m_Name: EnemyParticle
   m_TagString: EnemyParticle
@@ -139,3 +140,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-8104047953551067893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130368855368226251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5696f42e30beb2f4b99812569205c5ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _basicEnemyIconPrefab: {fileID: 6910632879388623176, guid: 239f3178ddfb2ff4db66b815b7e1293b,
+    type: 3}

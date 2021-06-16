@@ -1,146 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1286239632
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1286239633}
-  - component: {fileID: 1286239638}
-  - component: {fileID: 8325737003415080396}
-  - component: {fileID: 1286239637}
-  - component: {fileID: 1286239635}
-  - component: {fileID: 1286239634}
-  - component: {fileID: 1286239640}
-  - component: {fileID: 7394879972971066140}
-  m_Layer: 9
-  m_Name: Enemy Particle Storage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1286239633
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286239632}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8558924136983185776}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1286239638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286239632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bccbf1abec3f2ad42bb4867846f0328d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _deadEnemyParticlePickUpSelector: {fileID: 8325737003415080396}
-  _deadEnemyParticleLayerMask:
-    serializedVersion: 2
-    m_Bits: 16384
---- !u!114 &8325737003415080396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286239632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b4225e5a54af604abc03893d7296fb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 16384
-  _maxDistance: 20
---- !u!114 &1286239637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286239632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cbff58fd51bf1941b428670097da471, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _deadEnemyDropOffSelector: {fileID: 1286239635}
---- !u!114 &1286239635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286239632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b4225e5a54af604abc03893d7296fb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  _maxDistance: 20
---- !u!114 &1286239634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286239632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5991e29903e0e504a83de6b942f80b40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
---- !u!114 &1286239640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286239632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b85b8f602109cc4baed5a287a4e8911, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _laserPrefab: {fileID: 6270639148284885999, guid: a0248f667d765eb4ca33119ac75a440d,
-    type: 3}
-  _ground: {fileID: 0}
-  _randomPositionGenerator: {fileID: 0}
---- !u!114 &7394879972971066140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286239632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a017f4a071ce2ac47963d51bb91a7562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyParticleListObj: {fileID: 11400000, guid: 1794413a947bf95408ef7fee19e0c035,
-    type: 2}
 --- !u!1 &8558924136983185779
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,6 +13,13 @@ GameObject:
   - component: {fileID: 8558924136983185782}
   - component: {fileID: 8558924136983185783}
   - component: {fileID: 834945237}
+  - component: {fileID: 834945234}
+  - component: {fileID: 834945235}
+  - component: {fileID: 834945236}
+  - component: {fileID: 7189850385293883584}
+  - component: {fileID: 834945238}
+  - component: {fileID: 834945239}
+  - component: {fileID: 834945240}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -172,7 +38,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1286239633}
   - {fileID: 1693315308454632707}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -237,6 +102,110 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainPlayerObj: {fileID: 11400000, guid: cb92a8c01a13f0442aec36e639dfc767, type: 2}
+--- !u!114 &834945234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558924136983185779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a017f4a071ce2ac47963d51bb91a7562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyParticleListObj: {fileID: 11400000, guid: 1794413a947bf95408ef7fee19e0c035,
+    type: 2}
+--- !u!114 &834945235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558924136983185779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b85b8f602109cc4baed5a287a4e8911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _laserPrefab: {fileID: 6270639148284885999, guid: a0248f667d765eb4ca33119ac75a440d,
+    type: 3}
+  _ground: {fileID: 0}
+  _randomPositionGenerator: {fileID: 0}
+--- !u!114 &834945236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558924136983185779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5991e29903e0e504a83de6b942f80b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+--- !u!114 &7189850385293883584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558924136983185779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4225e5a54af604abc03893d7296fb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  _maxDistance: 20
+--- !u!114 &834945238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558924136983185779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cbff58fd51bf1941b428670097da471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deadEnemyDropOffSelector: {fileID: 7189850385293883584}
+--- !u!114 &834945239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558924136983185779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4225e5a54af604abc03893d7296fb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  _maxDistance: 20
+--- !u!114 &834945240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558924136983185779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bccbf1abec3f2ad42bb4867846f0328d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deadEnemyParticlePickUpSelector: {fileID: 834945239}
+  _deadEnemyParticleLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!1001 &1221993032624519912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -247,7 +216,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 3dbda2e048dc4754780f25f3f80071cf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dbda2e048dc4754780f25f3f80071cf,
         type: 3}

@@ -16,8 +16,8 @@ public class TransformListScrObj : ScriptableObject
 
 	public void AddTransform(Transform t)
 	{
-		Debug.Log("added   count: " + _transformList.Count);
 		_transformList.Add(t);
+		Debug.Log("added   count: " + _transformList.Count);
 		Invoke();
 	}
 
@@ -29,9 +29,17 @@ public class TransformListScrObj : ScriptableObject
 
 	public void RemoveAllTransform()
 	{
+		Debug.Log(_transformList.Count);
 		foreach (Transform t in _transformList)
 		{
-			Destroy(t.gameObject);
+			try
+			{
+				Destroy(t.gameObject);
+			}
+			catch
+			{
+				Destroy(t);
+			}
 		}
 		_transformList.Clear();
 
