@@ -1085,6 +1085,116 @@ Transform:
   m_Father: {fileID: 100642273}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &834945233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8558924136983185779, guid: 2f3edef3dfcd1224e9155b4accd9a85a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8558924136904970250}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &834945234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834945233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a017f4a071ce2ac47963d51bb91a7562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyParticleListObj: {fileID: 11400000, guid: 1794413a947bf95408ef7fee19e0c035,
+    type: 2}
+--- !u!114 &834945235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834945233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b85b8f602109cc4baed5a287a4e8911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _laserPrefab: {fileID: 6270639148284885999, guid: a0248f667d765eb4ca33119ac75a440d,
+    type: 3}
+  _ground: {fileID: 1036920895}
+  _randomPositionGenerator: {fileID: 1036920896}
+--- !u!114 &834945236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834945233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5991e29903e0e504a83de6b942f80b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 963194227}
+--- !u!114 &834945237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834945233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4225e5a54af604abc03893d7296fb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  _maxDistance: 20
+--- !u!114 &834945238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834945233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cbff58fd51bf1941b428670097da471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deadEnemyDropOffSelector: {fileID: 834945237}
+--- !u!114 &834945239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834945233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4225e5a54af604abc03893d7296fb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  _maxDistance: 20
+--- !u!114 &834945240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834945233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bccbf1abec3f2ad42bb4867846f0328d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deadEnemyParticlePickUpSelector: {fileID: 834945239}
+  _deadEnemyParticleLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!1001 &841229808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1096,6 +1206,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796888963424439656, guid: b814f61578078d9438ab8463095d182b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1796888963424439657, guid: b814f61578078d9438ab8463095d182b,
         type: 3}
@@ -2659,6 +2774,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 834945237, guid: 2f3edef3dfcd1224e9155b4accd9a85a, type: 3}
+      propertyPath: _deadEnemyParticleLayerMask.m_Bits
+      value: 16384
+      objectReference: {fileID: 0}
     - target: {fileID: 1286239634, guid: 2f3edef3dfcd1224e9155b4accd9a85a, type: 3}
       propertyPath: mainCamera
       value: 
@@ -2736,5 +2855,12 @@ PrefabInstance:
       propertyPath: _mainCamera
       value: 
       objectReference: {fileID: 963194228}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1286239638, guid: 2f3edef3dfcd1224e9155b4accd9a85a, type: 3}
+    - {fileID: 8325737003415080396, guid: 2f3edef3dfcd1224e9155b4accd9a85a, type: 3}
+    - {fileID: 1286239637, guid: 2f3edef3dfcd1224e9155b4accd9a85a, type: 3}
+    - {fileID: 1286239635, guid: 2f3edef3dfcd1224e9155b4accd9a85a, type: 3}
+    - {fileID: 1286239634, guid: 2f3edef3dfcd1224e9155b4accd9a85a, type: 3}
+    - {fileID: 1286239640, guid: 2f3edef3dfcd1224e9155b4accd9a85a, type: 3}
+    - {fileID: 7394879972971066140, guid: 2f3edef3dfcd1224e9155b4accd9a85a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2f3edef3dfcd1224e9155b4accd9a85a, type: 3}

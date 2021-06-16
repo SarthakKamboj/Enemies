@@ -50,6 +50,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deadEnemyParticlePickUpSelector: {fileID: 8325737003415080396}
+  _deadEnemyParticleLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!114 &8325737003415080396
 MonoBehaviour:
   m_ObjectHideFlags: 0
