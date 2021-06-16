@@ -3,8 +3,18 @@
 public class EnemyParticleSelectionResponse : SelectionResponse
 {
 
+	Renderer _renderer;
+	Collider _collider;
+
+	void Awake()
+	{
+		_renderer = GetComponent<Renderer>();
+		_collider = GetComponent<Collider>();
+	}
+
 	public override void Selected()
 	{
-		transform.GetComponent<Renderer>().enabled = false;
+		_renderer.enabled = false;
+		_collider.enabled = false;
 	}
 }
