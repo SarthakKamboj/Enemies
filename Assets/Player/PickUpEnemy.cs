@@ -3,15 +3,15 @@
 public class PickUpEnemy : MonoBehaviour
 {
 
-	[SerializeField] Selector _deadEnemyPickUpSelector;
+	[SerializeField] Selector _deadEnemyParticlePickUpSelector;
 
 	RayProvider _screenRayProvider;
-	EnemyStorage _enemyStorage;
+	Storage _enemyStorage;
 
 	void Awake()
 	{
 		_screenRayProvider = GetComponent<RayProvider>();
-		_enemyStorage = GetComponent<EnemyStorage>();
+		_enemyStorage = GetComponent<Storage>();
 	}
 
 	void Update()
@@ -19,24 +19,20 @@ public class PickUpEnemy : MonoBehaviour
 		if (Input.GetMouseButtonDown(0))
 		{
 			Ray ray = _screenRayProvider.GetRay();
-			_deadEnemyPickUpSelector.CheckRay(ray);
+			_deadEnemyParticlePickUpSelector.CheckRay(ray);
 
-			Transform deadEnemy = _deadEnemyPickUpSelector.GetSelection();
-			if (deadEnemy != null && deadEnemy.GetComponent<EnemyDie>().IsDead())
+			Transform deadEnemyParticle = _deadEnemyParticlePickUpSelector.GetSelection();
+			if (deadEnemyParticle != null)
 			{
-				PickUp(deadEnemy);
+				PickUp(deadEnemyParticle);
 			}
-
-
 		}
 	}
 
 	void PickUp(Transform t)
 	{
-		if (_enemyStorage.GetEnemy() == null)
-		{
-			_enemyStorage.SetEnemy(t);
-		}
+		t.GetComponent<SelectionResponse>().Selected();
+		_enemyStorage.AddToStorage(t);
 	}
 
 

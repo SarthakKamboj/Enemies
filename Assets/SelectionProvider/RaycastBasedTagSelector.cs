@@ -1,17 +1,19 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class RaycastBasedSelector : Selector
+public class RaycastBasedTagSelector : Selector
 {
 
-	[SerializeField] LayerMask _layerMask;
 	[SerializeField] float _maxDistance = 20f;
+	[SerializeField] string _targetTag;
 
 	RaycastHit _hitInfo;
 
 	public override void CheckRay(Ray ray)
 	{
-		if (Physics.Raycast(ray, out var hit, _maxDistance, _layerMask))
+		Debug.Log("checked");
+		if (Physics.Raycast(ray, out var hit, Mathf.Infinity) && hit.transform.CompareTag(_targetTag))
 		{
+			Debug.Log(hit.transform.tag);
 			_hitInfo = hit;
 		}
 		else
@@ -29,5 +31,4 @@ public class RaycastBasedSelector : Selector
 	{
 		return _hitInfo.point;
 	}
-
 }

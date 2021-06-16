@@ -10,14 +10,12 @@ public class GenerateNewLaser : MonoBehaviour
 	DisposeEnemy _disposeEnemy;
 	Vector3 _groundExtents;
 	Vector3 _laserExtents;
-	Detector _laserDetector;
 
 	void Awake()
 	{
 		_disposeEnemy = GetComponent<DisposeEnemy>();
 		_disposeEnemy.AddEnemyDropOffListener(CreateNewLaser);
 		_groundExtents = _ground.GetComponent<Collider>().bounds.extents;
-		_laserDetector = GetComponent<Detector>();
 		_laserExtents = GetLaserExents();
 	}
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DisposeEnemy : MonoBehaviour
@@ -7,14 +8,14 @@ public class DisposeEnemy : MonoBehaviour
 	[SerializeField] Selector _deadEnemyDropOffSelector;
 
 	RayProvider _cameraRayProvider;
-	EnemyStorage _enemyStorage;
+	Storage _enemyParticleStorage;
 	Action OnEnemyDropOff;
 
 
 	void Awake()
 	{
 		_cameraRayProvider = GetComponent<RayProvider>();
-		_enemyStorage = GetComponent<EnemyStorage>();
+		_enemyParticleStorage = GetComponent<Storage>();
 	}
 
 	public void AddEnemyDropOffListener(Action func)
@@ -33,12 +34,14 @@ public class DisposeEnemy : MonoBehaviour
 		{
 			Ray ray = _cameraRayProvider.GetRay();
 			_deadEnemyDropOffSelector.CheckRay(ray);
-			Transform storedEnemy = _enemyStorage.GetEnemy();
-			if (_deadEnemyDropOffSelector.GetSelection() != null && storedEnemy != null)
+			List<Transform> storedEnemyParticleList = _enemyParticleStorage.GetItemsFromStorage();
+			Transform selection = _deadEnemyDropOffSelector.GetSelection();
+
+			if (selection != null && storedEnemyParticleList.Count != 0)
 			{
-				_enemyStorage.DropEnemy();
+				_enemyParticleStorage.Clear();
+				Debug.Log(_enemyParticleStorage.GetItemsFromStorage().Count);
 				OnEnemyDropOff?.Invoke();
-				Destroy(storedEnemy.gameObject);
 			}
 		}
 	}

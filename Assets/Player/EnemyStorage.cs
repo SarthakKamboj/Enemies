@@ -1,38 +1,47 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class EnemyStorage : MonoBehaviour
+public class EnemyStorage : Storage
 {
 
 	[SerializeField] Collider _collider;
 
 	Vector3 _playerExtents;
-	Transform _enemyTransform;
+	List<Transform> _enemyTransformList = new List<Transform>();
 
 	void Awake()
 	{
 		_playerExtents = _collider.bounds.extents;
 	}
 
-	public void SetEnemy(Transform t)
+	public override void AddToStorage(Transform t)
 	{
-		_enemyTransform = t;
+		if (_enemyTransformList.Count == 0)
+		{
+			_enemyTransformList.Add(t);
+		}
 	}
 
 	void LateUpdate()
 	{
-		if (_enemyTransform != null)
+		if (_enemyTransformList.Count != 0)
 		{
-			_enemyTransform.position = transform.position + new Vector3(0f, _playerExtents.y + 2f, 0f);
+			_enemyTransformList[0].position = transform.position + new Vector3(0f, _playerExtents.y + 2f, 0f);
 		}
 	}
 
-	public Transform GetEnemy()
+	public override List<Transform> GetItemsFromStorage()
 	{
-		return _enemyTransform;
+		return _enemyTransformList;
 	}
 
-	public void DropEnemy()
+	public override void RemoveFromStorage(Transform t)
 	{
-		_enemyTransform = null;
+		_enemyTransformList.Clear();
+	}
+
+	public override void Clear()
+	{
+		_enemyTransformList.Clear();
 	}
 }
