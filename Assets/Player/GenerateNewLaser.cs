@@ -19,14 +19,6 @@ public class GenerateNewLaser : MonoBehaviour
 		_laserExtents = GetLaserExents();
 	}
 
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			CreateNewLaser();
-		}
-	}
-
 	Vector3 GetLaserExents()
 	{
 		GameObject tempLaser = Instantiate(_laserPrefab);
@@ -40,10 +32,17 @@ public class GenerateNewLaser : MonoBehaviour
 		_disposeEnemy.RemoveEnemyDropOffListener(CreateNewLaser);
 	}
 
-	void CreateNewLaser()
+	void CreateNewLaser(int numEnemies)
+	{
+		for (int i = 0; i < numEnemies; i++)
+		{
+			_CreateNewLaser();
+		}
+	}
+
+	private void _CreateNewLaser()
 	{
 		Vector3 newPos = _randomPositionGenerator.GetRandomPosition() + new Vector3(0f, _laserExtents.y, 0f);
 		Instantiate(_laserPrefab, newPos, Quaternion.Euler(Vector3.zero));
 	}
-
 }

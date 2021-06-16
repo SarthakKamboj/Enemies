@@ -9,7 +9,9 @@ public class DisposeEnemy : MonoBehaviour
 
 	RayProvider _cameraRayProvider;
 	Storage _enemyParticleStorage;
-	Action OnEnemyDropOff;
+
+	public delegate void EnemyDropOff(int numEnemies);
+	EnemyDropOff OnEnemyDropOff;
 
 
 	void Awake()
@@ -18,12 +20,12 @@ public class DisposeEnemy : MonoBehaviour
 		_enemyParticleStorage = GetComponent<Storage>();
 	}
 
-	public void AddEnemyDropOffListener(Action func)
+	public void AddEnemyDropOffListener(EnemyDropOff func)
 	{
 		OnEnemyDropOff += func;
 	}
 
-	public void RemoveEnemyDropOffListener(Action func)
+	public void RemoveEnemyDropOffListener(EnemyDropOff func)
 	{
 		OnEnemyDropOff -= func;
 	}
@@ -39,9 +41,8 @@ public class DisposeEnemy : MonoBehaviour
 
 			if (selection != null && storedEnemyParticleList.Count != 0)
 			{
+				OnEnemyDropOff?.Invoke(storedEnemyParticleList.Count);
 				_enemyParticleStorage.Clear();
-				Debug.Log(_enemyParticleStorage.GetItemsFromStorage().Count);
-				OnEnemyDropOff?.Invoke();
 			}
 		}
 	}
