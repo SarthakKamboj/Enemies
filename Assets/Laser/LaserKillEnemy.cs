@@ -4,7 +4,7 @@ using UnityEngine;
 public class LaserKillEnemy : MonoBehaviour
 {
 
-	[SerializeField] LayerMask enemyLayerMask;
+	[SerializeField] LayerMask _enemyLayerMask;
 	Action OnEnemyKilled;
 	LaserActivationManager _laserActivationManager;
 
@@ -35,7 +35,7 @@ public class LaserKillEnemy : MonoBehaviour
 
 	bool IsEnemy(Transform enemy)
 	{
-		return enemyLayerMask == (enemyLayerMask | (1 << enemy.gameObject.layer));
+		return _enemyLayerMask == (_enemyLayerMask | (1 << enemy.gameObject.layer));
 	}
 
 }

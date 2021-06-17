@@ -5,6 +5,7 @@ public class LaserActivationManager : MonoBehaviour
 {
 
 	[SerializeField] Material inActiveMaterial;
+	[SerializeField] float _bufferUntilDeactivation = 0.2f;
 	[SerializeField] float _timeUntilReactivation = 5f;
 
 	bool deactivated = false;
@@ -31,8 +32,7 @@ public class LaserActivationManager : MonoBehaviour
 	public void Deactivate()
 	{
 		deactivated = true;
-		_renderer.material = inActiveMaterial;
-		StartCoroutine(Activate());
+		StartCoroutine(_Deactivate());
 	}
 
 	IEnumerator Activate()
@@ -40,6 +40,13 @@ public class LaserActivationManager : MonoBehaviour
 		yield return new WaitForSeconds(_timeUntilReactivation);
 		deactivated = false;
 		_renderer.material = _activeMaterial;
+	}
+
+	IEnumerator _Deactivate()
+	{
+		yield return new WaitForSeconds(_bufferUntilDeactivation);
+		_renderer.material = inActiveMaterial;
+		StartCoroutine(Activate());
 	}
 
 	public bool IsLaserDeactivated()
