@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816cd18c5c81c614d9b5d8cc0ade78ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyDieParticlePrefab: {fileID: 130368855368226251, guid: 800a3a38f867fbe418b3b535f79f8656,
+  _enemyDieParticlePrefab: {fileID: 5199280938999185464, guid: 3c655194b41419043b866a66501af9a3,
     type: 3}
 --- !u!1001 &5353082308996663161
 PrefabInstance:

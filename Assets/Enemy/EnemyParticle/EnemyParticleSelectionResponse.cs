@@ -3,14 +3,8 @@
 public class EnemyParticleSelectionResponse : SelectionResponse
 {
 
-	Renderer _renderer;
-	Collider _collider;
-
-	void Awake()
-	{
-		_renderer = GetComponent<Renderer>();
-		_collider = GetComponent<Collider>();
-	}
+	[SerializeField] Renderer _renderer;
+	[SerializeField] Collider _collider;
 
 	public override void Selected()
 	{
