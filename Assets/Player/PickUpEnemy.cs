@@ -46,10 +46,8 @@ public class PickUpEnemy : MonoBehaviour
 
 	void OnControllerColliderHit(ControllerColliderHit hit)
 	{
-		Debug.Log("hit");
 		if (IsInLayerMask(_deadEnemyParticleLayerMask, hit.gameObject.layer) && _waitTime <= 0f)
 		{
-			Debug.Log("hit enemy particle");
 			Transform deadEnemyParticle = hit.transform;
 			PickUp(deadEnemyParticle);
 			_waitTime = WAIT_TIME;
