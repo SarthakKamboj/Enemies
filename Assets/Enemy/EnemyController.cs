@@ -77,9 +77,4 @@ public class EnemyController : MonoBehaviour
 		this.enabled = false;
 	}
 
-	void OnDrawGizmos()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawSphere(_targetPos, 5f);
-	}
 }
