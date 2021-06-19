@@ -5,13 +5,13 @@ public class GroundRandomPosition : RandomPosition
 
 	[SerializeField] Detector _invalidLocationDetector;
 
-	Transform _transform;
+	Transform _t;
 	Vector3 _groundExtents;
 
 	void Awake()
 	{
-		_transform = transform;
-		_groundExtents = _transform.GetComponent<Collider>().bounds.extents;
+		_t = transform;
+		_groundExtents = _t.GetComponent<Collider>().bounds.extents;
 	}
 
 	public override Vector3 GetRandomPosition()
@@ -19,11 +19,11 @@ public class GroundRandomPosition : RandomPosition
 		float x, y, z;
 		Vector3 newPos;
 
-		y = _transform.position.y + _groundExtents.y;
+		y = _t.position.y + _groundExtents.y;
 		do
 		{
-			x = Random.Range(_transform.position.x - _groundExtents.x, _transform.position.x + _groundExtents.x);
-			z = Random.Range(_transform.position.z - _groundExtents.z, _transform.position.z + _groundExtents.z);
+			x = Random.Range(_t.position.x - _groundExtents.x, _t.position.x + _groundExtents.x);
+			z = Random.Range(_t.position.z - _groundExtents.z, _t.position.z + _groundExtents.z);
 			newPos = new Vector3(x, y, z);
 		} while (_invalidLocationDetector.Detect(newPos));
 

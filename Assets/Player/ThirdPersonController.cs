@@ -19,8 +19,8 @@ public class ThirdPersonController : MonoBehaviour
 
 	void Update()
 	{
-		float horizontalInput = Input.GetAxis("Horizontal");
-		float verticalInput = Input.GetAxis("Vertical");
+		float horizontalInput = Input.GetAxisRaw("Horizontal");
+		float verticalInput = Input.GetAxisRaw("Vertical");
 
 		Vector3 inputVec = (new Vector3(horizontalInput, 0f, verticalInput));
 		float inputMag = inputVec.magnitude;
