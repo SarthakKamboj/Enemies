@@ -14,9 +14,11 @@ public class Bop : MonoBehaviour
 
 	Transform _t;
 
-	PositionStateMachine _positionStateMachine;
+	// PositionStateMachine _positionStateMachine;
+	StateMachine _positionStateMachine;
+	int _animPartIdx = 0;
 
-	void Start()
+	void Awake()
 	{
 		_straightMoveDir = _straightMoveDir.normalized;
 		_bopTimeFromCenterToEdge = _bopPeriod / 4f;
@@ -27,17 +29,37 @@ public class Bop : MonoBehaviour
 		Vector3 topEdgePos = centerPos + _straightMoveDir * _bopAmplitude;
 		Vector3 bottomEdgePos = centerPos - _straightMoveDir * _bopAmplitude;
 
-		_positionStateMachine = new PositionStateMachine();
+		// _positionStateMachine = new PositionStateMachine();
+		_positionStateMachine = new StateMachine();
 
 		PositionState forwardFromCenter = new PositionState(centerPos, topEdgePos);
 		PositionState backFromTop = new PositionState(topEdgePos, centerPos);
 		PositionState backFromCenter = new PositionState(centerPos, bottomEdgePos);
 		PositionState forwardFromBottom = new PositionState(bottomEdgePos, centerPos);
 
-		_positionStateMachine.AddPositionEndpoint(forwardFromCenter);
-		_positionStateMachine.AddPositionEndpoint(backFromTop);
-		_positionStateMachine.AddPositionEndpoint(backFromCenter);
-		_positionStateMachine.AddPositionEndpoint(forwardFromBottom);
+		_positionStateMachine.AddAnyTransition(forwardFromCenter, IsGoingForwardFromCenter);
+		_positionStateMachine.AddAnyTransition(backFromTop, IsGoingBackFromTop);
+		_positionStateMachine.AddAnyTransition(backFromCenter, IsGoingBackFromCenter);
+		_positionStateMachine.AddAnyTransition(forwardFromBottom, IsGoingForwardFromBottom);
+
+		_positionStateMachine.SetState(forwardFromCenter);
+	}
+
+	bool IsGoingForwardFromCenter()
+	{
+		return _animPartIdx == 0;
+	}
+	bool IsGoingBackFromTop()
+	{
+		return _animPartIdx == 1;
+	}
+	bool IsGoingBackFromCenter()
+	{
+		return _animPartIdx == 2;
+	}
+	bool IsGoingForwardFromBottom()
+	{
+		return _animPartIdx == 3;
 	}
 
 	void Update()
@@ -49,7 +71,14 @@ public class Bop : MonoBehaviour
 		if (_bopSectionTimeElapsed > _bopTimeFromCenterToEdge)
 		{
 			_bopSectionTimeElapsed = 0f;
-			_positionStateMachine.AdvancePositionEndpoints();
+			_animPartIdx += 1;
+			if (_animPartIdx == 4)
+			{
+				_animPartIdx = 0;
+			}
+
+
+			_positionStateMachine.Tick();
 		}
 	}
 
@@ -57,77 +86,33 @@ public class Bop : MonoBehaviour
 	{
 		float bopSectionFinishedPercentage = _bopSectionTimeElapsed / _bopTimeFromCenterToEdge;
 
-		Vector3 startPos = _positionStateMachine.GetFromPos();
-		Vector3 endPos = _positionStateMachine.GetToPos();
+		PositionState curState = (PositionState)_positionStateMachine.curState;
+		Vector3 startPos = curState.GetFromVec();
+		Vector3 endPos = curState.GetToVec();
 
 		return Vector3.Slerp(startPos, endPos, bopSectionFinishedPercentage);
 	}
-}
 
-class PositionState
-{
-
-	public Vector3 from;
-	public Vector3 to;
-
-	public PositionState(Vector3 from, Vector3 to)
+	class PositionState : State
 	{
-		this.from = from;
-		this.to = to;
-	}
-}
+		Vector3 from;
+		Vector3 to;
 
-class PositionStateMachine
-{
-
-	List<PositionState> _positionStates;
-	PositionState _curPositionState;
-	int _curIdx;
-
-	public PositionStateMachine()
-	{
-		_positionStates = new List<PositionState>();
-		_curIdx = 0;
-	}
-
-	public void AddPositionEndpoint(PositionState posState)
-	{
-		_positionStates.Add(posState);
-
-		if (_positionStates.Count == 1)
+		public PositionState(Vector3 from, Vector3 to)
 		{
-			_curPositionState = posState;
+			this.from = from;
+			this.to = to;
 		}
-	}
 
-	public Vector3 GetFromPos()
-	{
-		return _curPositionState.from;
-	}
-
-	public Vector3 GetToPos()
-	{
-		return _curPositionState.to;
-	}
-
-	public void AdvancePositionEndpoints()
-	{
-		_curIdx++;
-		if (_curIdx == _positionStates.Count)
+		public Vector3 GetFromVec()
 		{
-			_curIdx = 0;
+			return from;
 		}
-		_curPositionState = _positionStates[_curIdx];
-	}
 
-	public void SetPositionState(PositionState posState)
-	{
-		int idx = Array.IndexOf(_positionStates.ToArray(), posState);
-		if (idx == -1)
+		public Vector3 GetToVec()
 		{
-			throw new Exception("Position state is not registered.");
+			return to;
 		}
-		_curIdx = idx;
-	}
 
+	}
 }

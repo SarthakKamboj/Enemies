@@ -7,7 +7,6 @@ public class Rotate : MonoBehaviour
 
 	void Update()
 	{
-		Debug.Log(_period * Time.deltaTime * 360f);
 		transform.Rotate(Vector3.up, Time.deltaTime * 360f / _period);
 	}
 }
