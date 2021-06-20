@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BasicEnemyDie : EnemyDie
+public class DestroyOnDie : EnemyDie
 {
 
 	public override void Die()

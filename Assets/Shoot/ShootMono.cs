@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class ShootBase : MonoBehaviour
+public class ShootMono : MonoBehaviour
 {
 
 	public virtual void Shoot()

@@ -6,9 +6,9 @@ public class TargetPlayer : State
 
 	Transform _player, _t;
 	NavMeshAgent _agent;
-	ShootBase _shoot;
+	ShootMono _shoot;
 
-	public TargetPlayer(Transform player, NavMeshAgent agent, Transform t, ShootBase shoot)
+	public TargetPlayer(Transform player, NavMeshAgent agent, Transform t, ShootMono shoot)
 	{
 		_player = player;
 		_agent = agent;

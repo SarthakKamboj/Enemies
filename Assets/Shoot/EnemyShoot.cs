@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyShoot : ShootBase
+public class EnemyShoot : ShootMono
 {
 
 	[SerializeField] Transform _shootPoint;

@@ -27,7 +27,7 @@ public class EnemyTargetManager : MonoBehaviour
 	{
 		UpdatePlayerRef(_playerObj.GetTransform());
 
-		ShootBase shoot = GetComponent<ShootBase>();
+		ShootMono shoot = GetComponent<ShootMono>();
 		NavMeshAgent navMeshAgent = GetComponent<NavMeshAgent>();
 		float stoppingDistance = navMeshAgent.stoppingDistance;
 
