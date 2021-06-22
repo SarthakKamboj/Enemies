@@ -1,62 +1,99 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : NpcController
 {
 
-	[SerializeField] NavMeshAgent _agent;
+	[SerializeField] float _moveDist = 10f;
+	[SerializeField] float _visionLength = 5f;
+	[SerializeField] float _peripherialAngle = 30f;
 	[SerializeField] TransformScrObj _playerObj;
-	[SerializeField] Animator _enemyAnimator;
-	[SerializeField] float TimeBetweenEnemyMove = 5f;
+	[SerializeField] Selector _wallSelector;
+	[SerializeField] ShootMono _shoot;
+	[SerializeField] NavMeshAgent _navMeshAgent;
 
-	Transform _t;
-	EnemyDie _baseEnemyDie;
+	StateMachine _enemyTargetStateMachine;
 	Transform _player;
-	int speedHash;
-	float _timeUntilEnemyMove;
-	RandomPosition _nearPlayerRandomPositionProvider;
+	Transform _t;
+
+	int _calculatedPlayerInSight = 0;
+	bool _playerInSight = false;
+
 
 	void Awake()
 	{
 		_t = transform;
-		_baseEnemyDie = GetComponent<EnemyDie>();
-		_baseEnemyDie.AddEnemyDieListener(OnEnemyDie);
 
-		_playerObj.AddTransformChangeListener(UpdatePlayerRef);
-		speedHash = Animator.StringToHash("Speed");
-
-		_timeUntilEnemyMove = TimeBetweenEnemyMove;
+		MaxSpeed = _navMeshAgent.speed;
 	}
 
 	void Start()
 	{
-		UpdatePlayerRef(_playerObj.GetTransform());
-		_nearPlayerRandomPositionProvider = _player.GetComponent<RandomPosition>();
+		_player = _playerObj.GetTransform();
+
+		float stoppingDistance = _navMeshAgent.stoppingDistance;
+
+		var moveBackAndForthState = new MoveBackAndForthState(transform, _moveDist, _navMeshAgent, stoppingDistance);
+		var targetPlayer = new TargetEntity(_player, _navMeshAgent, _t, _shoot);
+
+		_enemyTargetStateMachine = new StateMachine();
+
+		_enemyTargetStateMachine.AddAnyTransition(moveBackAndForthState, NotPlayerInSight);
+		_enemyTargetStateMachine.AddAnyTransition(targetPlayer, PlayerInSight);
 	}
 
-	void OnDestroy()
+	bool PlayerInSight()
 	{
-		_baseEnemyDie.RemoveEnemyDieListener(OnEnemyDie);
-		_playerObj.RemoveTransformChangeListener(UpdatePlayerRef);
+		if (_calculatedPlayerInSight == 1) return _playerInSight;
+
+		Vector3 diff = _player.position - _t.position;
+		Debug.DrawLine(_t.position, _t.position + diff.normalized * _visionLength, Color.red);
+		if (diff.magnitude > _visionLength)
+		{
+			_playerInSight = false;
+			return false;
+		}
+
+		Ray ray = new Ray(_t.position, diff.normalized);
+		_wallSelector.CheckRay(ray);
+		if (_wallSelector.GetSelection() != null)
+		{
+			_playerInSight = false;
+			return false;
+		}
+
+		if (Vector3.Dot(diff.normalized, _t.forward) < Mathf.Cos(_peripherialAngle * Mathf.Deg2Rad))
+		{
+			_playerInSight = false;
+			return false;
+		}
+
+		_playerInSight = true;
+		_calculatedPlayerInSight = 1;
+		return true;
 	}
 
-	void UpdatePlayerRef(Transform t)
+	bool NotPlayerInSight()
 	{
-		_player = t;
+		if (_calculatedPlayerInSight == 0)
+		{
+			PlayerInSight();
+		}
+		return !_playerInSight;
 	}
 
 	void Update()
 	{
-		_timeUntilEnemyMove = Mathf.Max(_timeUntilEnemyMove - Time.deltaTime, 0f);
-
-		float normalizedAgentVel = _agent.velocity.magnitude / _agent.speed;
-		_enemyAnimator.SetFloat(speedHash, normalizedAgentVel);
+		Move();
 	}
 
-	void OnEnemyDie()
+	public override void Move()
 	{
-		_agent.enabled = false;
-		this.enabled = false;
-	}
+		_calculatedPlayerInSight = 0;
 
+		speed = _navMeshAgent.velocity.magnitude;
+		_enemyTargetStateMachine.Tick();
+	}
 }
+
+

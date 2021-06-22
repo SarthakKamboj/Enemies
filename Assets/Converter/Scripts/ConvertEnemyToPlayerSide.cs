@@ -7,9 +7,14 @@ public class ConvertEnemyToPlayerSide : MonoBehaviour
 
 	void OnTriggerEnter(Collider collider)
 	{
-		if (LayerMaskUtils.IsInLayer(_enemyLayer, collider.gameObject.layer))
+		GameObject go = collider.gameObject;
+		if (LayerMaskUtils.IsInLayer(_enemyLayer, go.layer))
 		{
-			Debug.Log("hit");
+			ConvertToPlayerSide convertToPlayerSide = go.GetComponent<ConvertToPlayerSide>();
+			if (!convertToPlayerSide.IsConvertedToPlayerSide())
+			{
+				convertToPlayerSide.ConvertToPlayer();
+			}
 		}
 	}
 
