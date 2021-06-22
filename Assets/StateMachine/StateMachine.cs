@@ -6,7 +6,7 @@ public class StateMachine
 
 	Dictionary<Type, List<Transition>> _transitions;
 	List<Transition> _anyTransitions;
-	public State curState;
+	public State curState { get; private set; }
 
 	public StateMachine()
 	{

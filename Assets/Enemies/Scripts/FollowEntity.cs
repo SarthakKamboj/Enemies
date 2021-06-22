@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FollowEntity : State, ITransform
+public class FollowEntity : State
 {
 	Transform _target, _t;
 	NavMeshAgent _agent;
@@ -14,11 +14,6 @@ public class FollowEntity : State, ITransform
 		_agent = agent;
 		_t = t;
 		_vicinityDistance = vicinityDistance;
-	}
-
-	public Transform GetTransform()
-	{
-		return _target;
 	}
 
 	public override void Tick()

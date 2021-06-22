@@ -35,6 +35,7 @@ public class TargetAndShootEntity : State
 		_shoot.Shoot();
 		_agent.SetDestination(_target.position);
 	}
+
 }
 
 

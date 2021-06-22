@@ -9,12 +9,12 @@ public class PlayerAllyEnemyController : NpcController
 	[SerializeField] Transform _enemyTransform;
 	[SerializeField] ShootMono _shoot;
 	[SerializeField] TransformScrObj _playerObj;
-	[SerializeField] float _enemyDetectionRadius = 10f;
+	[SerializeField] float _enemyDetectionRadius = 10f, _vicinityDistance = 7.5f;
 	[SerializeField] LayerMask _enemyLayerMask;
 
 	Transform _player;
 
-	StateMachine _enemyTargetStateMachine;
+	StateMachine _actionStateMachine;
 	TargetAndShootEntity _targetEnemy;
 
 	void Start()
@@ -24,11 +24,11 @@ public class PlayerAllyEnemyController : NpcController
 		float stoppingDistance = _navMeshAgent.stoppingDistance;
 
 		_targetEnemy = new TargetAndShootEntity(_navMeshAgent, _enemyTransform, _shoot);
-		var followPlayer = new FollowEntity(_player, _navMeshAgent, _enemyTransform);
+		var followPlayer = new FollowEntity(_player, _navMeshAgent, _enemyTransform, _vicinityDistance);
 
-		_enemyTargetStateMachine = new StateMachine();
-		_enemyTargetStateMachine.AddAnyTransition(_targetEnemy, IsEnemyDetected);
-		_enemyTargetStateMachine.AddAnyTransition(followPlayer, NotEnemyDetected);
+		_actionStateMachine = new StateMachine();
+		_actionStateMachine.AddAnyTransition(_targetEnemy, IsEnemyDetected);
+		_actionStateMachine.AddAnyTransition(followPlayer, NotEnemyDetected);
 
 	}
 
@@ -55,7 +55,7 @@ public class PlayerAllyEnemyController : NpcController
 
 	public override void Move()
 	{
-		_enemyTargetStateMachine.Tick();
+		_actionStateMachine.Tick();
 	}
 
 	void Update()

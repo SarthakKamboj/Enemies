@@ -288,6 +288,11 @@ MonoBehaviour:
   _enemyTransform: {fileID: 1796888963424439657}
   _shoot: {fileID: 8054665922503575125}
   _playerObj: {fileID: 11400000, guid: cb92a8c01a13f0442aec36e639dfc767, type: 2}
+  _enemyDetectionRadius: 10
+  _vicinityDistance: 12.5
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &3781788142544089811
 GameObject:
   m_ObjectHideFlags: 0
