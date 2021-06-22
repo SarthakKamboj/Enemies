@@ -34,7 +34,7 @@ public class EnemyController : NpcController
 		float stoppingDistance = _navMeshAgent.stoppingDistance;
 
 		var moveBackAndForthState = new MoveBackAndForthState(transform, _moveDist, _navMeshAgent, stoppingDistance);
-		var targetPlayer = new TargetEntity(_player, _navMeshAgent, _t, _shoot);
+		var targetPlayer = new TargetAndShootEntity(_player, _navMeshAgent, _t, _shoot);
 
 		_enemyTargetStateMachine = new StateMachine();
 

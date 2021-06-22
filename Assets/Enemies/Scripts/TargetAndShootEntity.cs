@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class TargetEntity : State
+public class TargetAndShootEntity : State
 {
 
 	Transform _target, _t;
 	NavMeshAgent _agent;
 	ShootMono _shoot;
 
-	public TargetEntity(Transform target, NavMeshAgent agent, Transform t, ShootMono shoot)
+	public TargetAndShootEntity(Transform target, NavMeshAgent agent, Transform t, ShootMono shoot)
 	{
 		_target = target;
 		_agent = agent;
@@ -16,7 +16,7 @@ public class TargetEntity : State
 		_shoot = shoot;
 	}
 
-	public TargetEntity(NavMeshAgent agent, Transform t, ShootMono shoot)
+	public TargetAndShootEntity(NavMeshAgent agent, Transform t, ShootMono shoot)
 	{
 		_agent = agent;
 		_t = t;

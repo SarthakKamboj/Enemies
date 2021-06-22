@@ -15,7 +15,7 @@ public class PlayerAllyEnemyController : NpcController
 	Transform _player;
 
 	StateMachine _enemyTargetStateMachine;
-	TargetEntity _targetEnemy;
+	TargetAndShootEntity _targetEnemy;
 
 	void Start()
 	{
@@ -23,7 +23,7 @@ public class PlayerAllyEnemyController : NpcController
 
 		float stoppingDistance = _navMeshAgent.stoppingDistance;
 
-		_targetEnemy = new TargetEntity(_navMeshAgent, _enemyTransform, _shoot);
+		_targetEnemy = new TargetAndShootEntity(_navMeshAgent, _enemyTransform, _shoot);
 		var followPlayer = new FollowEntity(_player, _navMeshAgent, _enemyTransform);
 
 		_enemyTargetStateMachine = new StateMachine();
