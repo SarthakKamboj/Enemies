@@ -6,7 +6,7 @@ public class NumberBasedHealthManager : HealthManager
 	[SerializeField] DieMono _dieMono;
 
 
-	float _health;
+	[SerializeField] float _health;
 
 	void Awake()
 	{
@@ -17,6 +17,7 @@ public class NumberBasedHealthManager : HealthManager
 	{
 		_health -= damage;
 
+		Debug.Log(gameObject.name + " health: " + _health);
 		if (_health <= 0f)
 		{
 			_dieMono.Die();

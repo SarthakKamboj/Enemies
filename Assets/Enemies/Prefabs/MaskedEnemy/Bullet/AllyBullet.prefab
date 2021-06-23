@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: -3607062045018160694}
   - component: {fileID: 6468555675234597923}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: AllyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,7 +253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _layerMask:
     serializedVersion: 2
-    m_Bits: 8704
+    m_Bits: 256
+  _damage: 10
 --- !u!114 &-3607062045018160694
 MonoBehaviour:
   m_ObjectHideFlags: 0

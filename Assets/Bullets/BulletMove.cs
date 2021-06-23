@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EnemyBulletMove : MonoBehaviour
+public class BulletMove : MonoBehaviour
 {
 
 	[SerializeField] TransformScrObj _playerObj;
