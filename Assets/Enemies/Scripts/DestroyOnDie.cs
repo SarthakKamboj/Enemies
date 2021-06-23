@@ -1,4 +1,4 @@
-public class DestroyOnDie : EnemyDie
+public class DestroyOnDie : DieMono
 {
 
 	public override void Die()

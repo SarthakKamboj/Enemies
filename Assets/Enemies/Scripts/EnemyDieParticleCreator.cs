@@ -5,17 +5,17 @@ public class EnemyDieParticleCreator : MonoBehaviour
 
 	[SerializeField] GameObject _enemyDieParticlePrefab;
 
-	EnemyDie _baseEnemyDie;
+	DieMono _baseEnemyDie;
 
 	void Awake()
 	{
-		_baseEnemyDie = GetComponent<EnemyDie>();
-		_baseEnemyDie.AddEnemyDieListener(OnEnemyDie);
+		_baseEnemyDie = GetComponent<DieMono>();
+		_baseEnemyDie.AddDieListener(OnEnemyDie);
 	}
 
 	void OnDestroy()
 	{
-		_baseEnemyDie.RemoveEnemyDieListener(OnEnemyDie);
+		_baseEnemyDie.RemoveDieListener(OnEnemyDie);
 	}
 
 	void OnEnemyDie()

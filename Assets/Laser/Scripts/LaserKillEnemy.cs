@@ -27,7 +27,7 @@ public class LaserKillEnemy : MonoBehaviour
 	{
 		if (IsEnemy(collider.transform) && !_laserActivationManager.IsLaserDeactivated())
 		{
-			EnemyDie enemyDie = collider.GetComponent<EnemyDie>();
+			DieMono enemyDie = collider.GetComponent<DieMono>();
 			enemyDie.Die();
 			OnEnemyKilled?.Invoke();
 		}
