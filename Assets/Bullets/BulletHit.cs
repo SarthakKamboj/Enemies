@@ -8,14 +8,6 @@ public class BulletHit : MonoBehaviour
 	[SerializeField] float _damage = 10f;
 	bool hit = false;
 
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.P))
-		{
-			Time.timeScale = Mathf.Abs(Time.timeScale - 1);
-		}
-	}
-
 	void OnCollisionEnter(Collision col)
 	{
 		if (!hit && IsInLayerMask(col.gameObject.layer, _layerMask))

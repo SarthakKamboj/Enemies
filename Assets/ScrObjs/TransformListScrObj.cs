@@ -17,7 +17,6 @@ public class TransformListScrObj : ScriptableObject
 	public void AddTransform(Transform t)
 	{
 		_transformList.Add(t);
-		Debug.Log("added   count: " + _transformList.Count);
 		Invoke();
 	}
 

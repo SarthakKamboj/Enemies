@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class NumberBasedHealthManager : HealthManager
 {
@@ -6,9 +6,9 @@ public class NumberBasedHealthManager : HealthManager
 	[SerializeField] DieMono _dieMono;
 
 
-	[SerializeField] float _health;
+	float _health;
 
-	void Awake()
+	void Start()
 	{
 		_health = MaxHealth;
 	}
@@ -17,7 +17,6 @@ public class NumberBasedHealthManager : HealthManager
 	{
 		_health -= damage;
 
-		Debug.Log(gameObject.name + " health: " + _health);
 		if (_health <= 0f)
 		{
 			_dieMono.Die();
