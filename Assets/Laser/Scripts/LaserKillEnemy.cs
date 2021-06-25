@@ -7,6 +7,7 @@ public class LaserKillEnemy : MonoBehaviour
 	[SerializeField] LayerMask _enemyLayerMask;
 	Action OnEnemyKilled;
 	LaserActivationManager _laserActivationManager;
+	bool runtime = false;
 
 	void Awake()
 	{
@@ -23,11 +24,18 @@ public class LaserKillEnemy : MonoBehaviour
 		OnEnemyKilled -= func;
 	}
 
+	void Start()
+	{
+		runtime = true;
+	}
+
 	void OnTriggerEnter(Collider collider)
 	{
-		if (IsEnemy(collider.transform) && !_laserActivationManager.IsLaserDeactivated())
+		if (runtime && IsEnemy(collider.transform) && !_laserActivationManager.IsLaserDeactivated())
 		{
 			DieMono enemyDie = collider.GetComponent<DieMono>();
+			Debug.Log("laser kill");
+			Debug.Log(gameObject.name + " " + gameObject.transform.position + " " + collider.gameObject.name + " " + collider.transform.position);
 			enemyDie.Die();
 			OnEnemyKilled?.Invoke();
 		}

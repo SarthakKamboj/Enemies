@@ -6,6 +6,7 @@ public class EnemyShoot : ShootMono
 	[SerializeField] Transform _shootPoint;
 	[SerializeField] float TimeBetweenShots;
 	[SerializeField] GameObject _bulletPrefab;
+	[SerializeField] Transform _shooterTransform;
 
 	float _timeBetweenShots;
 	Transform _t;
@@ -26,7 +27,8 @@ public class EnemyShoot : ShootMono
 		if (_timeBetweenShots <= 0f)
 		{
 			_timeBetweenShots = TimeBetweenShots;
-			Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.Euler(new Vector3(0f, _t.eulerAngles.y, 0f))); ;
+			GameObject bullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.Euler(new Vector3(0f, _t.eulerAngles.y, 0f))); ;
+			bullet.GetComponent<BulletOwner>().owner = _shooterTransform;
 		}
 	}
 

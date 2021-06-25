@@ -8,7 +8,7 @@ public class PickUpEnemy : MonoBehaviour
 
 	RayProvider _screenRayProvider;
 	Storage _enemyStorage;
-	const float WAIT_TIME = 1f;
+	const float WAIT_TIME = 0.05f;
 	float _waitTime;
 
 	void Awake()

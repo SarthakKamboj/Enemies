@@ -3,41 +3,15 @@
 public class EnemyAnimationController : NpcAnimationController
 {
 
-	[Header("Animators")]
 	[SerializeField] Animator _enemyAnimator;
-	[SerializeField] Animator _enemyAllyAnimator;
-
-	[Header("Npc Controllers")]
 	[SerializeField] NpcController _enemyController;
-	[SerializeField] NpcController _enemyAllyPlayerController;
 
-	int speedHash;
-	NpcController _curController;
-	Animator _curAnimator;
-	ConvertToPlayerSide _convertToPlayerSide;
+	int walkForwardHash, runForwardHash;
 
 	void Awake()
 	{
-		speedHash = Animator.StringToHash("Speed");
-		_curController = _enemyController;
-		_curAnimator = _enemyAnimator;
-		_convertToPlayerSide = GetComponent<ConvertToPlayerSide>();
-	}
-
-	void OnEnable()
-	{
-		_convertToPlayerSide.AddSwitchToPlayerSideListener(ChangeToAllyController);
-	}
-
-	void OnDisable()
-	{
-		_convertToPlayerSide.AddSwitchToPlayerSideListener(ChangeToAllyController);
-	}
-
-	void ChangeToAllyController()
-	{
-		_curController = _enemyAllyPlayerController;
-		_curAnimator = _enemyAllyAnimator;
+		walkForwardHash = Animator.StringToHash("Walk Forward");
+		runForwardHash = Animator.StringToHash("Run Forward");
 	}
 
 	void Update()
@@ -47,8 +21,9 @@ public class EnemyAnimationController : NpcAnimationController
 
 	public override void UpdateAnimation()
 	{
-		float normalizedAgentVel = _curController.speed / _curController.MaxSpeed;
-		_curAnimator.SetFloat(speedHash, normalizedAgentVel);
+		float normalizedAgentVel = _enemyController.speed / _enemyController.MaxSpeed;
+		_enemyAnimator.SetBool(runForwardHash, normalizedAgentVel >= 0.35f);
+		_enemyAnimator.SetBool(walkForwardHash, normalizedAgentVel >= 0.1f && normalizedAgentVel < 0.35f);
 	}
 
 }

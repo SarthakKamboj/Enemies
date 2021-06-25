@@ -21,7 +21,6 @@ public class FloatScrObj : ScriptableObject
 	public void SetValue(float newValue)
 	{
 		value = newValue;
-		Debug.Log("newValue: " + value);
 		OnChange?.Invoke(value);
 	}
 
