@@ -3,12 +3,14 @@ using UnityEngine.AI;
 
 public class MoveBackAndForthState : State
 {
-	public Vector3 _forwardPos, _backPos;
+	public Vector3 _forwardPos, _backPos, _curDest;
 	Transform _t;
 	float _length;
 	float _stoppingDistance;
 	int _moveDir;
 	NavMeshAgent _agent;
+	float WaitTimeAfterDestUpdate = 1f;
+	float _timeAfterDestUpdate;
 
 	public MoveBackAndForthState(Transform t, float length, NavMeshAgent agent, float stoppingDistance)
 	{
@@ -17,30 +19,43 @@ public class MoveBackAndForthState : State
 		_moveDir = 1;
 		_agent = agent;
 		_stoppingDistance = stoppingDistance;
+		_timeAfterDestUpdate = WaitTimeAfterDestUpdate;
+		UpdatePositions();
+		_curDest = _forwardPos;
 	}
 
 	public override void Start()
 	{
-		UpdatePositions();
-		_agent.SetDestination(_forwardPos);
+		UpdateDestination();
 	}
 
 	public override void Tick()
 	{
-		if (Vector3.Distance(_t.position, _forwardPos) <= _stoppingDistance)
+
+		if (_timeAfterDestUpdate > 0f)
 		{
-			_agent.SetDestination(_backPos);
+			_timeAfterDestUpdate = Mathf.Max(0f, _timeAfterDestUpdate - Time.deltaTime);
+			return;
 		}
-		else if (Vector3.Distance(_t.position, _backPos) <= _stoppingDistance)
+
+		if (_agent.velocity.magnitude <= 0.01f)
 		{
-			_agent.SetDestination(_forwardPos);
+			_curDest = _curDest == _forwardPos ? _backPos : _forwardPos;
+			UpdateDestination();
+			_timeAfterDestUpdate = WaitTimeAfterDestUpdate;
 		}
+
 	}
 
 	void UpdatePositions()
 	{
-		this._forwardPos = _t.position + _t.forward * _length;
-		this._backPos = _t.position - _t.forward * _length;
+		_forwardPos = _t.position + _t.forward * _length;
+		_backPos = _t.position - _t.forward * _length;
+	}
+
+	void UpdateDestination()
+	{
+		_agent.SetDestination(_curDest);
 	}
 }
 
