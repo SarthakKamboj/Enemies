@@ -1,31 +1,34 @@
 ﻿using UnityEngine;
 
-public class ThirdPersonController : MonoBehaviour
+public class ThirdPersonController : MovementController
 {
 	[SerializeField] Transform _mainCamera;
 	[SerializeField] float _smoothTime = 0.1f;
 	[SerializeField] float _speed = 50f;
-	[SerializeField] Animator _animator;
 	[SerializeField] Movement _movement;
 
 	float _curVel;
-	int _speedHash;
 
 	void Awake()
 	{
-		_speedHash = Animator.StringToHash("Speed");
+		speed = 0f;
+		MaxSpeed = Mathf.Sqrt(2);
 	}
 
 	void Update()
+	{
+		Move();
+	}
+
+	public override void Move()
 	{
 		float horizontalInput = Input.GetAxisRaw("Horizontal");
 		float verticalInput = Input.GetAxisRaw("Vertical");
 
 		Vector3 inputVec = (new Vector3(horizontalInput, 0f, verticalInput));
-		float inputMag = inputVec.magnitude;
-		_animator.SetFloat(_speedHash, inputMag);
+		speed = inputVec.magnitude;
 
-		if (inputMag >= 0.1f)
+		if (speed >= 0.1f)
 		{
 			Vector3 inputVecNormed = inputVec.normalized;
 			Transform t = transform;
@@ -37,11 +40,9 @@ public class ThirdPersonController : MonoBehaviour
 			Quaternion quat = Quaternion.Euler(new Vector3(0f, angle, 0f));
 			t.rotation = quat;
 
-
 			Vector3 moveDir = Quaternion.Euler(new Vector3(0f, targetAngle, 0f)) * Vector3.forward;
 			Vector3 moveVec = moveDir * _speed * Time.deltaTime;
 			_movement.Move(moveVec);
-
 		}
 	}
 }

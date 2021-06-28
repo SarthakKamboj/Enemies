@@ -5,10 +5,11 @@ using UnityEngine;
 public class DisposeEnemy : MonoBehaviour
 {
 
-	[SerializeField] Selector _deadEnemyDropOffSelector;
+	[SerializeField] float _maxRadiusToDropOff = 3f;
+	[SerializeField] LayerMask _disposalLayerMask;
 
-	RayProvider _cameraRayProvider;
 	Storage _enemyParticleStorage;
+	Transform _t;
 
 	public delegate void EnemyDropOff(int numEnemies);
 	EnemyDropOff OnEnemyDropOff;
@@ -16,8 +17,8 @@ public class DisposeEnemy : MonoBehaviour
 
 	void Awake()
 	{
-		_cameraRayProvider = GetComponent<RayProvider>();
 		_enemyParticleStorage = GetComponent<Storage>();
+		_t = transform;
 	}
 
 	public void AddEnemyDropOffListener(EnemyDropOff func)
@@ -32,18 +33,16 @@ public class DisposeEnemy : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			Ray ray = _cameraRayProvider.GetRay();
-			_deadEnemyDropOffSelector.CheckRay(ray);
-			List<Transform> storedEnemyParticleList = _enemyParticleStorage.GetItemsFromStorage();
-			Transform selection = _deadEnemyDropOffSelector.GetSelection();
+		List<Transform> storedEnemyParticleList = _enemyParticleStorage.GetItemsFromStorage();
+		Collider[] colliders = Physics.OverlapSphere(_t.position, _maxRadiusToDropOff, _disposalLayerMask);
+		if (colliders.Length == 0) return;
 
-			if (selection != null && storedEnemyParticleList.Count != 0)
-			{
-				OnEnemyDropOff?.Invoke(storedEnemyParticleList.Count);
-				_enemyParticleStorage.Clear();
-			}
+		Transform selection = colliders[0].transform;
+
+		if (selection != null && storedEnemyParticleList.Count != 0)
+		{
+			OnEnemyDropOff?.Invoke(storedEnemyParticleList.Count);
+			_enemyParticleStorage.Clear();
 		}
 	}
 }
