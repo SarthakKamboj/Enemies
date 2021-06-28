@@ -9,12 +9,12 @@ public class PlayerHealthBarUI : MonoBehaviour
 	float StartHealth = -1f;
 	float maxScale = -1f;
 
-	void Awake()
+	void OnEnable()
 	{
 		_playerHealthObj.AddChangeListener(UpdateUI);
 	}
 
-	void OnDestroy()
+	void OnDisable()
 	{
 		_playerHealthObj.AddChangeListener(UpdateUI);
 	}

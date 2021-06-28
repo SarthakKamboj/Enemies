@@ -19,19 +19,20 @@ public class MoveBackAndForthState : State
 		_moveDir = 1;
 		_agent = agent;
 		_stoppingDistance = stoppingDistance;
-		_timeAfterDestUpdate = WaitTimeAfterDestUpdate;
+		_timeAfterDestUpdate = 0f;
 		UpdatePositions();
 		_curDest = _forwardPos;
 	}
 
 	public override void Start()
 	{
+		_timeAfterDestUpdate = 0f;
+		UpdatePositions();
 		UpdateDestination();
 	}
 
 	public override void Tick()
 	{
-
 		if (_timeAfterDestUpdate > 0f)
 		{
 			_timeAfterDestUpdate = Mathf.Max(0f, _timeAfterDestUpdate - Time.deltaTime);
@@ -40,7 +41,6 @@ public class MoveBackAndForthState : State
 
 		if (_agent.velocity.magnitude <= 0.01f)
 		{
-			_curDest = _curDest == _forwardPos ? _backPos : _forwardPos;
 			UpdateDestination();
 			_timeAfterDestUpdate = WaitTimeAfterDestUpdate;
 		}
@@ -55,6 +55,7 @@ public class MoveBackAndForthState : State
 
 	void UpdateDestination()
 	{
+		_curDest = _curDest == _forwardPos ? _backPos : _forwardPos;
 		_agent.SetDestination(_curDest);
 	}
 }

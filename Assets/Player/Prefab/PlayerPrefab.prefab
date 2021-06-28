@@ -168,8 +168,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8558924136983185776}
-  - component: {fileID: 8558924136983185782}
   - component: {fileID: 8558924136983185783}
+  - component: {fileID: 8527956170983745603}
+  - component: {fileID: 8558924136983185782}
   - component: {fileID: 834945237}
   - component: {fileID: 834945234}
   - component: {fileID: 834945235}
@@ -207,22 +208,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8558924136983185782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8558924136983185779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 061c67e2071554d4ca2a1ad1377cafa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mainCamera: {fileID: 0}
-  _smoothTime: 0.1
-  _speed: 10
-  _animator: {fileID: 2615945162097569576}
 --- !u!143 &8558924136983185783
 CharacterController:
   m_ObjectHideFlags: 0
@@ -241,6 +226,36 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8527956170983745603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558924136983185779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a52779ee8ff3a40932779aad708fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cc: {fileID: 8558924136983185783}
+--- !u!114 &8558924136983185782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558924136983185779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061c67e2071554d4ca2a1ad1377cafa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainCamera: {fileID: 0}
+  _smoothTime: 0.1
+  _speed: 10
+  _animator: {fileID: 2615945162097569576}
+  _characterController: {fileID: 8527956170983745603}
 --- !u!114 &834945237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601d7e98e250dce409725f9d356a843c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 500
+  MaxHealth: 100
   _dieMono: {fileID: 1706813074}
   _healthObj: {fileID: 11400000, guid: 827f8983817149447beb67e3d44bf98d, type: 2}
 --- !u!114 &66540269277615355
@@ -414,7 +429,7 @@ MonoBehaviour:
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  _cc: {fileID: 8558924136983185783}
+  movement: {fileID: 8527956170983745603}
 --- !u!1001 &1221993032624519912
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,14 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Gravity : MonoBehaviour
 {
 
 	[SerializeField] Transform _groundCheck;
 	[SerializeField] LayerMask _groundLayerMask;
-	[SerializeField] CharacterController _cc;
+	[SerializeField] Movement movement;
+	[SerializeField] TriggerMono _trigger;
 
 	float yVel = 0f;
-
 	bool jumping = false;
 
 	void Update()
@@ -30,10 +31,11 @@ public class Gravity : MonoBehaviour
 			if (!jumping)
 			{
 				yVel = 0f;
+				_trigger?.Trigger();
 			}
 		}
 
-		_cc.Move(new Vector3(0f, yVel * Time.deltaTime, 0f));
+		movement.Move(new Vector3(0f, yVel * Time.deltaTime, 0f));
 	}
 
 	bool IsGrounded()

@@ -6,14 +6,13 @@ public class ThirdPersonController : MonoBehaviour
 	[SerializeField] float _smoothTime = 0.1f;
 	[SerializeField] float _speed = 50f;
 	[SerializeField] Animator _animator;
+	[SerializeField] Movement _characterController;
 
 	float _curVel;
-	CharacterController _characterController;
 	int _speedHash;
 
 	void Awake()
 	{
-		_characterController = GetComponent<CharacterController>();
 		_speedHash = Animator.StringToHash("Speed");
 	}
 
