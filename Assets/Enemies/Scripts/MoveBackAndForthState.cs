@@ -39,7 +39,7 @@ public class MoveBackAndForthState : State
 			return;
 		}
 
-		if (_agent.velocity.magnitude <= 0.01f)
+		if (_agent.velocity.magnitude <= 0.05f)
 		{
 			UpdateDestination();
 			_timeAfterDestUpdate = WaitTimeAfterDestUpdate;

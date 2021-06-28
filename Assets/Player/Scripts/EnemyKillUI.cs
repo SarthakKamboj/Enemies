@@ -11,10 +11,14 @@ public class EnemyKillUI : MonoBehaviour
 	void Awake()
 	{
 		_t = transform;
+	}
+
+	void OnEnable()
+	{
 		_enemyParticleListObj.AddTransformChangeListener(UpdateUI);
 	}
 
-	void OnDestroy()
+	void OnDisable()
 	{
 		_enemyParticleListObj.RemoveTransformChangeListener(UpdateUI);
 	}

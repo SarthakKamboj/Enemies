@@ -18,13 +18,16 @@ public class LaserActivationManager : MonoBehaviour
 	{
 		_renderer = transform.Find("GFX").GetComponent<Renderer>();
 		_killEnemy = GetComponent<LaserKillEnemy>();
-		_killEnemy.AddOnEnemyKilledListener(Deactivate);
 
 		_activeMaterial = _renderer.material;
-
 	}
 
-	void OnDestroy()
+	void OnEnable()
+	{
+		_killEnemy.AddOnEnemyKilledListener(Deactivate);
+	}
+
+	void OnDisable()
 	{
 		_killEnemy.RemoveOnEnemyKilledListener(Deactivate);
 	}

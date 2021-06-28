@@ -14,9 +14,18 @@ public class GenerateNewLaser : MonoBehaviour
 	void Awake()
 	{
 		_disposeEnemy = GetComponent<DisposeEnemy>();
-		_disposeEnemy.AddEnemyDropOffListener(CreateNewLaser);
 		_groundExtents = _ground.GetComponent<Collider>().bounds.extents;
 		_laserExtents = GetLaserExents();
+	}
+
+	void OnEnable()
+	{
+		_disposeEnemy.AddEnemyDropOffListener(CreateNewLaser);
+	}
+
+	void OnDisable()
+	{
+		_disposeEnemy.RemoveEnemyDropOffListener(CreateNewLaser);
 	}
 
 	Vector3 GetLaserExents()
@@ -25,11 +34,6 @@ public class GenerateNewLaser : MonoBehaviour
 		Vector3 laserExtents = tempLaser.GetComponent<Collider>().bounds.extents;
 		Destroy(tempLaser);
 		return laserExtents;
-	}
-
-	void OnDestroy()
-	{
-		_disposeEnemy.RemoveEnemyDropOffListener(CreateNewLaser);
 	}
 
 	void CreateNewLaser(int numEnemies)

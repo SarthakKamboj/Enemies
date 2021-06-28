@@ -13,10 +13,14 @@ public class LaserBeam : MonoBehaviour
 	void Awake()
 	{
 		_laserKillEnemy = GetComponent<LaserKillEnemy>();
+	}
+
+	void OnEnable()
+	{
 		_laserKillEnemy.AddOnEnemyKilledListener(ShowLaserBeam);
 	}
 
-	void OnDestroy()
+	void OnDisable()
 	{
 		_laserKillEnemy.AddOnEnemyKilledListener(ShowLaserBeam);
 	}
