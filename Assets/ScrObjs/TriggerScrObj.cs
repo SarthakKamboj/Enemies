@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class TriggerScrObj : ScriptableObject
 {
 
-	[SerializeField] UnityAction Actions;
+	[SerializeField] UnityEvent Actions;
 
 	Action OnAction;
 
@@ -22,6 +22,7 @@ public class TriggerScrObj : ScriptableObject
 
 	public void Trigger()
 	{
+		Actions?.Invoke();
 		OnAction?.Invoke();
 	}
 }

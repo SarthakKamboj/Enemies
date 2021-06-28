@@ -6,7 +6,7 @@ public class ThirdPersonController : MonoBehaviour
 	[SerializeField] float _smoothTime = 0.1f;
 	[SerializeField] float _speed = 50f;
 	[SerializeField] Animator _animator;
-	[SerializeField] Movement _characterController;
+	[SerializeField] Movement _movement;
 
 	float _curVel;
 	int _speedHash;
@@ -40,7 +40,7 @@ public class ThirdPersonController : MonoBehaviour
 
 			Vector3 moveDir = Quaternion.Euler(new Vector3(0f, targetAngle, 0f)) * Vector3.forward;
 			Vector3 moveVec = moveDir * _speed * Time.deltaTime;
-			_characterController.Move(moveVec);
+			_movement.Move(moveVec);
 
 		}
 	}
