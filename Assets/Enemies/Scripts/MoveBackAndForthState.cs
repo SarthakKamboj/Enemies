@@ -3,7 +3,9 @@ using UnityEngine.AI;
 
 public class MoveBackAndForthState : State
 {
-	public Vector3 _forwardPos, _backPos, _curDest;
+	public Vector3 _forwardPos { get; private set; }
+	public Vector3 _backPos { get; private set; }
+	public Vector3 _curDest;
 	Transform _t;
 	float _length;
 	float _stoppingDistance;
@@ -33,6 +35,7 @@ public class MoveBackAndForthState : State
 
 	public override void Tick()
 	{
+		// Debug.Log("_timeAfterDestUpdate: " + _timeAfterDestUpdate);
 		if (_timeAfterDestUpdate > 0f)
 		{
 			_timeAfterDestUpdate = Mathf.Max(0f, _timeAfterDestUpdate - Time.deltaTime);
@@ -43,6 +46,7 @@ public class MoveBackAndForthState : State
 		{
 			UpdateDestination();
 			_timeAfterDestUpdate = WaitTimeAfterDestUpdate;
+			// Debug.Log("set destination and reset time");
 		}
 
 	}

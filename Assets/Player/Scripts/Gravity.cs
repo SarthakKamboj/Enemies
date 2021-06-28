@@ -10,7 +10,7 @@ public class Gravity : MonoBehaviour
 	[SerializeField] TriggerMono _trigger;
 
 	float yVel = 0f;
-	bool jumping = false;
+	bool jumping = true;
 
 	void Update()
 	{
@@ -26,12 +26,19 @@ public class Gravity : MonoBehaviour
 
 		if (isGrounded)
 		{
+
+			bool wasJumping = jumping;
+
 			jumping = jumping && yVel > 0f;
 
 			if (!jumping)
 			{
 				yVel = 0f;
-				_trigger?.Trigger();
+
+				if (wasJumping)
+				{
+					_trigger?.Trigger();
+				}
 			}
 		}
 

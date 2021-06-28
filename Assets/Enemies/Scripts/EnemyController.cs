@@ -18,6 +18,7 @@ public class EnemyController : NpcController
 
 	int _calculatedPlayerInSight = 0;
 	bool _playerInSight = false;
+	MoveBackAndForthState moveBackAndForthState;
 
 
 	void Awake()
@@ -33,7 +34,7 @@ public class EnemyController : NpcController
 
 		float stoppingDistance = _navMeshAgent.stoppingDistance;
 
-		var moveBackAndForthState = new MoveBackAndForthState(transform, _moveDist, _navMeshAgent, stoppingDistance);
+		moveBackAndForthState = new MoveBackAndForthState(transform, _moveDist, _navMeshAgent, stoppingDistance);
 		var targetPlayer = new TargetAndShootEntity(_player, _navMeshAgent, _t, _shoot);
 
 		_enemyTargetStateMachine = new StateMachine();
@@ -85,6 +86,7 @@ public class EnemyController : NpcController
 	void Update()
 	{
 		Move();
+		Debug.Log(_navMeshAgent.destination);
 	}
 
 	public override void Move()
@@ -92,7 +94,18 @@ public class EnemyController : NpcController
 		_calculatedPlayerInSight = 0;
 
 		speed = _navMeshAgent.velocity.magnitude;
+		// Debug.Log("speed: " + speed);
 		_enemyTargetStateMachine.Tick();
+	}
+
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.red;
+		if (moveBackAndForthState != null)
+		{
+			Gizmos.DrawSphere(moveBackAndForthState._forwardPos, 0.2f);
+			Gizmos.DrawSphere(moveBackAndForthState._backPos, 0.2f);
+		}
 	}
 }
 
