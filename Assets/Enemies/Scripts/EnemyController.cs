@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : NpcController
+public class EnemyController : MovementController
 {
 
 	[SerializeField] float _moveDist = 10f;

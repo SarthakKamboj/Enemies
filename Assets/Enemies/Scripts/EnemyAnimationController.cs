@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class EnemyAnimationController : NpcAnimationController
+public class EnemyAnimationController : ScriptAnimationController
 {
 
 	[SerializeField] Animator _enemyAnimator;
-	[SerializeField] NpcController _enemyController;
+	[SerializeField] MovementController _enemyController;
 
 	int walkForwardHash, runForwardHash;
 

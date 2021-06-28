@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerAllyEnemyController : NpcController
+public class PlayerAllyEnemyController : MovementController
 {
 
 	[SerializeField] NavMeshAgent _navMeshAgent;
