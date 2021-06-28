@@ -11,10 +11,10 @@ public class EnemyController : NpcController
 	[SerializeField] Selector _wallSelector;
 	[SerializeField] ShootMono _shoot;
 	[SerializeField] NavMeshAgent _navMeshAgent;
+	[SerializeField] Transform _enemyTransform;
 
 	StateMachine _enemyTargetStateMachine;
 	Transform _player;
-	Transform _t;
 
 	int _calculatedPlayerInSight = 0;
 	bool _playerInSight = false;
@@ -23,19 +23,20 @@ public class EnemyController : NpcController
 
 	void Awake()
 	{
-		_t = transform;
+		// _t = transform;
 
-		MaxSpeed = _navMeshAgent.speed;
 	}
 
-	void Start()
+	void OnEnable()
 	{
+		MaxSpeed = _navMeshAgent.speed;
+
 		_player = _playerObj.GetTransform();
 
 		float stoppingDistance = _navMeshAgent.stoppingDistance;
 
-		moveBackAndForthState = new MoveBackAndForthState(transform, _moveDist, _navMeshAgent, stoppingDistance);
-		var targetPlayer = new TargetAndShootEntity(_player, _navMeshAgent, _t, _shoot);
+		moveBackAndForthState = new MoveBackAndForthState(_enemyTransform, _moveDist, _navMeshAgent, stoppingDistance);
+		var targetPlayer = new TargetAndShootEntity(_player, _navMeshAgent, _enemyTransform, _shoot);
 
 		_enemyTargetStateMachine = new StateMachine();
 
@@ -47,15 +48,15 @@ public class EnemyController : NpcController
 	{
 		if (_calculatedPlayerInSight == 1) return _playerInSight;
 
-		Vector3 diff = _player.position - _t.position;
-		Debug.DrawLine(_t.position, _t.position + diff.normalized * _visionLength, Color.red);
+		Vector3 diff = _player.position - _enemyTransform.position;
+		Debug.DrawLine(_enemyTransform.position, _enemyTransform.position + diff.normalized * _visionLength, Color.red);
 		if (diff.magnitude > _visionLength)
 		{
 			_playerInSight = false;
 			return false;
 		}
 
-		Ray ray = new Ray(_t.position, diff.normalized);
+		Ray ray = new Ray(_enemyTransform.position, diff.normalized);
 		_wallSelector.CheckRay(ray);
 		if (_wallSelector.GetSelection() != null)
 		{
@@ -63,7 +64,7 @@ public class EnemyController : NpcController
 			return false;
 		}
 
-		if (Vector3.Dot(diff.normalized, _t.forward) < Mathf.Cos(_peripherialAngle * Mathf.Deg2Rad))
+		if (Vector3.Dot(diff.normalized, _enemyTransform.forward) < Mathf.Cos(_peripherialAngle * Mathf.Deg2Rad))
 		{
 			_playerInSight = false;
 			return false;
@@ -86,7 +87,7 @@ public class EnemyController : NpcController
 	void Update()
 	{
 		Move();
-		Debug.Log(_navMeshAgent.destination);
+		// Debug.Log(_navMeshAgent.destination);
 	}
 
 	public override void Move()
@@ -94,6 +95,10 @@ public class EnemyController : NpcController
 		_calculatedPlayerInSight = 0;
 
 		speed = _navMeshAgent.velocity.magnitude;
+		if (Input.GetKeyDown(KeyCode.N))
+		{
+			Debug.Log("curPos: " + _enemyTransform.position + " dest: " + _navMeshAgent.destination);
+		}
 		// Debug.Log("speed: " + speed);
 		_enemyTargetStateMachine.Tick();
 	}

@@ -567,6 +567,7 @@ MonoBehaviour:
   _wallSelector: {fileID: 7004756126144439874}
   _shoot: {fileID: 4881487667791292282}
   _navMeshAgent: {fileID: 1796888963424439658}
+  _enemyTransform: {fileID: 1796888963424439657}
 --- !u!114 &4881487667791292282
 MonoBehaviour:
   m_ObjectHideFlags: 0
