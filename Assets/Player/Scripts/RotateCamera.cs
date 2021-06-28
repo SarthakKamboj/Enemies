@@ -9,7 +9,7 @@ public class RotateCamera : MonoBehaviour
 	{
 		if (Input.GetMouseButton(0))
 		{
-			float horizontal = Input.GetAxisRaw("Mouse X");
+			float horizontal = -Input.GetAxisRaw("Mouse X");
 			Vector3 angles = _camera.eulerAngles;
 			angles.y += horizontal;
 			_camera.eulerAngles = angles;
