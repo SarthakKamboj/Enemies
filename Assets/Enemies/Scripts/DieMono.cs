@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public abstract class DieMono : MonoBehaviour
+public class DieMono : MonoBehaviour
 {
 
 	protected Action OnDieAction;

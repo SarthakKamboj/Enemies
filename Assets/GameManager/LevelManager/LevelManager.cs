@@ -18,6 +18,11 @@ public class LevelManager : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 	}
 
+	public void RestartLevel()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
+
 	public void Quit()
 	{
 		Application.Quit();

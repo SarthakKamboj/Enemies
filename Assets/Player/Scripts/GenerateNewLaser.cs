@@ -1,31 +1,17 @@
 ﻿using UnityEngine;
 
-public class GenerateNewLaser : MonoBehaviour
+public class GenerateNewLaser : Generator
 {
 
 	[SerializeField] GameObject _laserPrefab;
-	[SerializeField] Transform _ground;
-	[SerializeField] RandomPosition _randomPositionGenerator;
 
-	DisposeEnemy _disposeEnemy;
-	Vector3 _groundExtents;
 	Vector3 _laserExtents;
+	RandomPosition _randomPositionGenerator;
 
 	void Awake()
 	{
-		_disposeEnemy = GetComponent<DisposeEnemy>();
-		_groundExtents = _ground.GetComponent<Collider>().bounds.extents;
 		_laserExtents = GetLaserExents();
-	}
-
-	void OnEnable()
-	{
-		_disposeEnemy.AddEnemyDropOffListener(CreateNewLaser);
-	}
-
-	void OnDisable()
-	{
-		_disposeEnemy.RemoveEnemyDropOffListener(CreateNewLaser);
+		_randomPositionGenerator = GameObject.Find("Ground").GetComponent<RandomPosition>();
 	}
 
 	Vector3 GetLaserExents()
@@ -36,15 +22,7 @@ public class GenerateNewLaser : MonoBehaviour
 		return laserExtents;
 	}
 
-	void CreateNewLaser(int numEnemies)
-	{
-		for (int i = 0; i < numEnemies; i++)
-		{
-			_CreateNewLaser();
-		}
-	}
-
-	private void _CreateNewLaser()
+	public override void Create()
 	{
 		Vector3 newPos = _randomPositionGenerator.GetRandomPosition() + new Vector3(0f, _laserExtents.y, 0f);
 		Instantiate(_laserPrefab, newPos, Quaternion.Euler(Vector3.zero));

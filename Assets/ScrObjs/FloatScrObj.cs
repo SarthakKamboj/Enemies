@@ -1,19 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScrObjs/FloatScrObj")]
 public class FloatScrObj : ScriptableObject
 {
 
 	public float value { get; private set; }
-	public delegate void OnChangeFunc(float val);
-	OnChangeFunc OnChange;
+	Action OnChange;
 
-	public void AddChangeListener(OnChangeFunc func)
+	public void AddChangeListener(Action func)
 	{
 		OnChange += func;
 	}
 
-	public void RemoveChangeListener(OnChangeFunc func)
+	public void RemoveChangeListener(Action func)
 	{
 		OnChange -= func;
 	}
@@ -21,7 +21,7 @@ public class FloatScrObj : ScriptableObject
 	public void SetValue(float newValue)
 	{
 		value = newValue;
-		OnChange?.Invoke(value);
+		OnChange?.Invoke();
 	}
 
 }

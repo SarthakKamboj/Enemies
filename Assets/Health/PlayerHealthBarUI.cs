@@ -16,11 +16,12 @@ public class PlayerHealthBarUI : MonoBehaviour
 
 	void OnDisable()
 	{
-		_playerHealthObj.AddChangeListener(UpdateUI);
+		_playerHealthObj.RemoveChangeListener(UpdateUI);
 	}
 
-	void UpdateUI(float health)
+	void UpdateUI()
 	{
+		float health = _playerHealthObj.value;
 		if (StartHealth == -1f)
 		{
 			StartHealth = health;
