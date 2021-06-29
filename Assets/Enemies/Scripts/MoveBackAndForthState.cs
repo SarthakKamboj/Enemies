@@ -37,13 +37,6 @@ public class MoveBackAndForthState : State
 
 	public override void Tick()
 	{
-
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			Debug.Log("_forwardPos: " + _forwardPos + " _backPos: " + _backPos);
-		}
-
-		// Debug.Log("_timeAfterDestUpdate: " + _timeAfterDestUpdate);
 		if (_timeAfterDestUpdate > 0f)
 		{
 			_timeAfterDestUpdate = Mathf.Max(0f, _timeAfterDestUpdate - Time.deltaTime);
@@ -54,7 +47,6 @@ public class MoveBackAndForthState : State
 		{
 			UpdateDestination();
 			_timeAfterDestUpdate = WaitTimeAfterDestUpdate;
-			// Debug.Log("set destination and reset time");
 		}
 
 	}

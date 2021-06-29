@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CursorMono : MonoBehaviour
+public class CursorHide : MonoBehaviour
 {
 	void Awake()
 	{

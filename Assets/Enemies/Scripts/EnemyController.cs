@@ -18,14 +18,7 @@ public class EnemyController : MovementController
 
 	int _calculatedPlayerInSight = 0;
 	bool _playerInSight = false;
-	MoveBackAndForthState moveBackAndForthState;
-
-
-	void Awake()
-	{
-		// _t = transform;
-
-	}
+	public MoveBackAndForthState moveBackAndForthState;
 
 	void OnEnable()
 	{
@@ -95,11 +88,6 @@ public class EnemyController : MovementController
 		_calculatedPlayerInSight = 0;
 
 		speed = _navMeshAgent.velocity.magnitude;
-		if (Input.GetKeyDown(KeyCode.N))
-		{
-			Debug.Log("curPos: " + _enemyTransform.position + " dest: " + _navMeshAgent.destination);
-		}
-		// Debug.Log("speed: " + speed);
 		_enemyTargetStateMachine.Tick();
 	}
 

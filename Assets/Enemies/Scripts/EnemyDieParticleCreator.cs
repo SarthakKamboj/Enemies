@@ -19,6 +19,5 @@ public class EnemyDieParticleCreator : MonoBehaviour
 	void OnEnemyDie()
 	{
 		GameObject particle = Instantiate(_enemyDieParticlePrefab, transform.position, Quaternion.identity);
-		Debug.Log("created particle");
 	}
 }

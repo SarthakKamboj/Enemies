@@ -31,7 +31,9 @@ public class TargetAndShootEntity : State
 	public override void Tick()
 	{
 		Vector3 lookDir = (_target.position - _t.position).normalized;
-		_t.rotation = Quaternion.LookRotation(lookDir, Vector3.up);
+		Quaternion quat = Quaternion.LookRotation(lookDir, Vector3.up);
+		Quaternion straightQuat = Quaternion.Euler(new Vector3(0f, quat.eulerAngles.y, 0f));
+		_t.rotation = straightQuat;
 		_shoot.Shoot();
 		_agent.SetDestination(_target.position);
 	}
