@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.12566608, g: 0.23710486, b: 0.352451, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -3294,12 +3294,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024744634}
   m_CullTransparentMesh: 0
---- !u!4 &1036920895 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 305620901443635295, guid: f225315dd8df0a54fade48d517fc233d,
-    type: 3}
-  m_PrefabInstance: {fileID: 305620900860239968}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1036920896 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 305620901443635232, guid: f225315dd8df0a54fade48d517fc233d,
@@ -5917,11 +5911,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 796996693530715130, guid: 5dce8cce682fbc94a9c750ec19d4e719,
-        type: 3}
-      propertyPath: _randomPositionGenerator
-      value: 
-      objectReference: {fileID: 1036920896}
     - target: {fileID: 4972032055380480660, guid: 5dce8cce682fbc94a9c750ec19d4e719,
         type: 3}
       propertyPath: _randomPositionGenerator
@@ -6164,14 +6153,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 834945235, guid: 2f3edef3dfcd1224e9155b4accd9a85a, type: 3}
-      propertyPath: _ground
-      value: 
-      objectReference: {fileID: 1036920895}
-    - target: {fileID: 834945235, guid: 2f3edef3dfcd1224e9155b4accd9a85a, type: 3}
-      propertyPath: _randomPositionGenerator
-      value: 
-      objectReference: {fileID: 1036920896}
     - target: {fileID: 6144788371608053635, guid: 2f3edef3dfcd1224e9155b4accd9a85a,
         type: 3}
       propertyPath: mainCamera

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4972032055380480874}
   - component: {fileID: 7319968417258780924}
   - component: {fileID: 796996693530715130}
+  - component: {fileID: 4972032054532631661}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -100,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthObj: {fileID: 11400000, guid: 827f8983817149447beb67e3d44bf98d, type: 2}
   _levelManager: {fileID: 0}
+  _updateScore: {fileID: 4972032054532631661}
 --- !u!114 &796996693530715130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,4 +116,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _laserPrefab: {fileID: 6270639148284885999, guid: a0248f667d765eb4ca33119ac75a440d,
     type: 3}
-  _randomPositionGenerator: {fileID: 0}
+--- !u!114 &4972032054532631661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4972032055380480663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f65f77b63d0fbd4b92a7e47a0f4d9cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scoreObj: {fileID: 11400000, guid: eee7e9fb8e1cd6e4991f27c38b31b34f, type: 2}
+  _scorePlayerPrefName: HighScore

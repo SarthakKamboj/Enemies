@@ -310,8 +310,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _laserPrefab: {fileID: 6270639148284885999, guid: a0248f667d765eb4ca33119ac75a440d,
     type: 3}
-  _ground: {fileID: 0}
-  _randomPositionGenerator: {fileID: 0}
 --- !u!114 &834945240
 MonoBehaviour:
   m_ObjectHideFlags: 0

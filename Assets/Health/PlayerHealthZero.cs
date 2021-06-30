@@ -5,6 +5,7 @@ public class PlayerHealthZero : MonoBehaviour
 
 	[SerializeField] FloatScrObj _healthObj;
 	[SerializeField] LevelManager _levelManager;
+	[SerializeField] UpdateScore _updateScore;
 
 	void Awake()
 	{
@@ -20,6 +21,7 @@ public class PlayerHealthZero : MonoBehaviour
 	{
 		if (_healthObj.value <= 0f)
 		{
+			_updateScore.ManageHighScore();
 			_levelManager.RestartLevel();
 		}
 	}
